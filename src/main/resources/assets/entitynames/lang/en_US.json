@@ -1,0 +1,13 @@
+{
+  "entitynames.configuration.first_names": "First names",
+  "entitynames.configuration.last_names": "Last names",
+
+  "entitynames.configuration.display_format": "Display format",
+
+  "entitynames.configuration.female_first_names": "Female first names",
+  "entitynames.configuration.do_female_names": "Include female first names",
+
+  "entitynames.configuration.do_nicknames": "Generate nicknames",
+
+  "entitynames.configuration.text_color": "Text color"
+}
