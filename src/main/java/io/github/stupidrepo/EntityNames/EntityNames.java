@@ -10,10 +10,8 @@ import net.minecraft.network.protocol.game.DebugEntityNameGenerator;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -30,7 +28,7 @@ public class EntityNames
     public static final String MODID = "entitynames";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public EntityNames(IEventBus modEventBus, ModContainer modContainer)
+    public EntityNames(ModContainer modContainer)
     {
         NeoForge.EVENT_BUS.register(this);
 
@@ -42,9 +40,6 @@ public class EntityNames
     private void renderEntitiesEvent(RenderLevelStageEvent event) {
         Minecraft mc = Minecraft.getInstance();
         PoseStack pose = event.getPoseStack();
-
-        Level level = mc.level;
-        if(level == null) return;
 
         if(event.getStage() == RenderLevelStageEvent.Stage.AFTER_ENTITIES) {
             HitResult hit = mc.hitResult;
