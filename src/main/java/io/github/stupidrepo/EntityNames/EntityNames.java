@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.debug.DebugRenderer;
 import net.minecraft.network.protocol.game.DebugEntityNameGenerator;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -45,8 +46,8 @@ public class EntityNames
             HitResult hit = mc.hitResult;
             if(hit != null && hit.getType() == HitResult.Type.ENTITY) {
                 Entity entity = ((EntityHitResult) hit).getEntity();
-                if(!(entity instanceof Player) && !entity.hasCustomName()) {
-                    renderTextOverEntity(pose, mc.renderBuffers().bufferSource(), getRandomName(entity), entity);
+                if(!(entity instanceof Player) && (entity instanceof LivingEntity) && !entity.hasCustomName()) {
+                    renderTextOverEntity(pose, mc.renderBuffers().bufferSource(), getEntityRandomName(entity), entity);
                 }
             }
         }
@@ -69,7 +70,7 @@ public class EntityNames
         );
     }
 
-    private static String getRandomName(Entity entity) {
+    public static String getEntityRandomName(Entity entity) {
         var random = RandomSource.create(entity.getUUID().hashCode() >> 2);
 
         var firstName = Util.getRandom(Config.firstNames, random);
